@@ -29,17 +29,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 Route::prefix('/admin')->group(function () {
 
-    Route::match(['get', 'post'],'login', [AdminController::class, 'login'])->name('admin.login');
+    Route::match(['get', 'post'], 'login', [AdminController::class, 'login'])->name('admin.login');
 
-    Route::group(['middleware'=>['admin']], function(){
+    Route::group(['middleware' => ['admin']], function () {
         Route::get('dashboard', [AdminController::class, 'dashboard']);
-        Route::get('logout', [AdminController::class , 'logout'])->name('admin.logout');
-    });
-    
-});
+        Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+        // Update Admin Password
+        Route::match(['get', 'post'], 'update-admin-password', [AdminController::class, 'updateAdminPassword'])->name('update.admin.password');
+        Route::match(['get', 'post'], 'update-admin-details', [AdminController::class, 'updateAdminDetails'])->name('update.admin.details');
+    });
+});
