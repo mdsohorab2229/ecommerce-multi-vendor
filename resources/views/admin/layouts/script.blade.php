@@ -19,3 +19,5 @@
  <script src="{{ url('admin/js/dashboard.js')  }}"></script>
  <script src="{{ url('admin/js/Chart.roundedBarCharts.js')  }}"></script>
  <!-- End custom js for this page-->
+ <!--Admin custom js part -->
+ <script src="{{ url('admin/js/custom.js') }}"></script>

@@ -42,6 +42,7 @@
                          <div class="form-group">
                             <label for="current_password">Current Password</label>
                             <input type="password" class="form-control" name="current_password" id="current_password" placeholder="Enter Current Password">
+                            <span id="check_password"></span>
                          </div>
                          <div class="form-group">
                             <label for="new_password">New Password</label>
