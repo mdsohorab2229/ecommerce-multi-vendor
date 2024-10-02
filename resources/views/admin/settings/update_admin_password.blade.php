@@ -30,7 +30,34 @@
                 <div class="card">
                    <div class="card-body">
                       <h4 class="card-title">Update Admin Password</h4>
-                      <form class="forms-sample">
+                      @if (Session::has('error_message'))
+                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong>Error: </strong> {{ Session::get('error_message')}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      @endif
+                      @if (Session::has('success_message'))
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>Success: </strong> {{ Session::get('success_message')}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      @endif
+                      @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                      @endif
+                      <form class="forms-sample" action="{{ route('update.admin.password') }}"  method="POST" name="updateAdminPasswordForm" id="updateAdminPasswordForm">
+                        @csrf
+
                          <div class="form-group">
                             <label>Admin Username / Email</label>
                             <input type="text" class="form-control" value="{{ $adminDetails['email']}}" id="" readonly>
@@ -52,12 +79,6 @@
                             <label for="confirm_password">Confirm Password</label>
                             <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Enter Confirm Password">
                          </div>
-                         <div class="form-check form-check-flat form-check-primary">
-                            <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input">
-                            Remember me
-                            </label>
-                         </div>
                          <button type="submit" class="btn btn-primary mr-2">Submit</button>
                          <button class="btn btn-light">Cancel</button>
                       </form>
@@ -71,5 +92,5 @@
     <!-- partial:partials/_footer.html -->
     @include('admin.layouts.footer')
     <!-- partial -->
-  </div>
+</div>
 @endsection

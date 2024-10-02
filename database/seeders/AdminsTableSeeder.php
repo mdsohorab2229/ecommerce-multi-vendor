@@ -15,15 +15,15 @@ class AdminsTableSeeder extends Seeder
     {
         $adminRecords  = [
             [
-                'id' => 1,
-                'name' => 'Super Admin',
-                'type' => 'superadmin',
-                'vendor_id' => 0,
+                'id' => 2,
+                'name' => 'sohorab',
+                'type' => 'vendor',
+                'vendor_id' => 1,
                 'mobile' => '01791805952',
-                'email' => 'superadmin@admin.com',
+                'email' => 'mdsohorab2229@gmail.com',
                 'password' => '$2a$12$Pgz.SXxoj73CO/SHSEz1j.QPEaSOGoKvGVWU5o302tSp34f3ByzRi',
                 'image' => '',
-                'status' => 1
+                'status' => 0
             ]
         ];
 
