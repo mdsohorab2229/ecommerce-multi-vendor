@@ -43,6 +43,8 @@ Route::prefix('/admin')->group(function () {
         // Update Admin Password
         Route::match(['get', 'post'], 'update-admin-password', [AdminController::class, 'updateAdminPassword'])->name('update.admin.password');
         Route::match(['get', 'post'], 'update-admin-details', [AdminController::class, 'updateAdminDetails'])->name('update.admin.details');
+        // Update vendor details
+        Route::match(['get','post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
         
         // Check Admin Password
         Route::post('check-admin-password', [AdminController::class , 'checkCurrentPassword']);
