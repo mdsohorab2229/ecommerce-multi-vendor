@@ -272,4 +272,12 @@ class AdminController extends Controller
 
         return view('admin.settings.update_vendor_details')->with(compact('slug', 'vendorDetails'));
     }
+
+    //Veiw vendor details 
+    public function viewVendorDeatils($id)
+    {
+        $vendorDetails = Admin::with('vendorPersonal', 'vendorBusiness', 'vendorBank')->where('id', $id)->first();
+        $vendorDetails = json_decode(json_encode($vendorDetails), true);
+        return view('admin.admins.view_vendor_details')->with(compact('vendorDetails'));
+    }
 }

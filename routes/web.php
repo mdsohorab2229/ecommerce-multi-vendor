@@ -47,6 +47,8 @@ Route::prefix('/admin')->group(function () {
         Route::match(['get','post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
         //Views Admin / Subadmin / Vendors 
         Route::get('admins/{type?}', [AdminController::class , 'admins']);
+        //View vendor details
+        Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDeatils']);
         // Check Admin Password
         Route::post('check-admin-password', [AdminController::class , 'checkCurrentPassword']);
     });
