@@ -48,6 +48,20 @@ class AdminController extends Controller
         return redirect('admin/login');
     }
 
+    public function admins($type = null)
+    {
+        $admins = Admin::query();
+        if (!empty($type)) {
+            $admins = $admins->where('type', $type);
+            $title = ucfirst($type) . 's';
+        } else {
+            $title = "All Admins\Subadmins\Vendors";
+        }
+        $admins = $admins->get()->toArray();
+        
+        return view('admin.admins.admins')->with(compact('admins', 'title'));
+    }
+
     public function updateAdminPassword(Request $request)
     {
         if ($request->isMethod('POST')) {
