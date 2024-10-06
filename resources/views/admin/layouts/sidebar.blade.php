@@ -8,12 +8,12 @@
         </li>
         @if(Auth::guard('admin')->user()->type=="vendor")
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#vendor-management-section" aria-expanded="false" aria-controls="vendor-management-section">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Vendor Details</span>
                 <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-basic">
+                <div class="collapse" id="vendor-management-section">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-vendor-details/personal') }}">Personal Details</a></li>
                         <li class="nav-item"> <a class="nav-link" href="{{ url('admin/update-vendor-details/business') }}">Business Details</a></li>
@@ -23,7 +23,7 @@
             </li>
         @else
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#settings-section" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#settings-section" aria-expanded="false" aria-controls="settings-section">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Settings</span>
                 <i class="menu-arrow"></i>
@@ -36,7 +36,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#admin-management-section" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#admin-management-section" aria-expanded="false" aria-controls="admin-management-section">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Admin Management</span>
                 <i class="menu-arrow"></i>
@@ -51,7 +51,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#users-management-section" aria-expanded="false" aria-controls="ui-basic">
+                <a class="nav-link" data-toggle="collapse" href="#users-management-section" aria-expanded="false" aria-controls="users-management-section">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Users Management</span>
                 <i class="menu-arrow"></i>
