@@ -15,7 +15,7 @@ class SectionController extends Controller
         $sections = Section::get()->toArray();
         return view('admin.sections.sections')->with(compact('sections'));
     }
-    
+
     //update section status
     public function updateSectionStatus(Request $request)
     {
@@ -29,5 +29,12 @@ class SectionController extends Controller
             Section::where('id', $data['section_id'])->update(['status' => $status]);
             return response()->json(['status' => $status, 'section_id' => $data['section_id']]);
         }
+    }
+
+    public function deleteSection($id)
+    {
+        Section::where('id', $id)->delete();
+        $message = "Section has been deleted successfully";
+        return redirect()->back()->with('success_message', $message);
     }
 }

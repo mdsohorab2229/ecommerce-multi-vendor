@@ -8,6 +8,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Sections</h4>
+                        @if (Session::has('success_message'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success: </strong> {{ Session::get('success_message')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
                         <div class="table-responsive pt-3">
                             <table id="sections" class="table table-bordered">
                                 <thead>
@@ -47,9 +55,11 @@
                                         <td>
                                             <a href="{{ url('admin/edit-section/'.$section['id']) }}">
                                                 <i style="font-size: x-large" class="mdi mdi-table-edit"></i></a> 
-                                            <a href="{{ url('admin/delete-section/'.$section['id']) }}">
-                                                <i style="font-size: x-large" class="mdi mdi-delete"></i></a>
 
+                                            {{-- <a title="section" class="confirmDelete" href="{{ url('admin/delete-section/'.$section['id']) }}">
+                                                <i style="font-size: x-large" class="mdi mdi-delete"></i></a> --}}
+                                            <a href="javascript:void(0)" class="confirmDelete" module="section" moduleid={{ $section['id'] }}>
+                                                <i style="font-size: x-large" class="mdi mdi-delete"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach

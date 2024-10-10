@@ -21,3 +21,5 @@
  <!-- End custom js for this page-->
  <!--Admin custom js part -->
  <script src="{{ url('admin/js/custom.js') }}"></script>
+ {{-- sweetalert2 cdn --}}
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
