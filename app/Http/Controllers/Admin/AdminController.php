@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-
+        Session::put('page', 'dashboard');
         $adminUserName = Auth::guard('admin')->user()->name ?? '';
         return view('admin.dashboard', compact('adminUserName'));
     }
 
     public function login(Request $request)
     {
-
         if ($request->isMethod('post')) {
             $data = $request->all();
 
@@ -54,8 +54,10 @@ class AdminController extends Controller
         if (!empty($type)) {
             $admins = $admins->where('type', $type);
             $title = ucfirst($type) . 's';
+            Session::put('page', 'view_'.strtolower($title));
         } else {
             $title = "All Admins\Subadmins\Vendors";
+            Session::put('page', 'view_all');
         }
         $admins = $admins->get()->toArray();
         
@@ -78,6 +80,7 @@ class AdminController extends Controller
 
     public function updateAdminPassword(Request $request)
     {
+        Session::put('page', 'update_admin_password');
         if ($request->isMethod('POST')) {
             $data = $request->all();
             if (Hash::check($data['current_password'], Auth::guard('admin')->user()->password)) {
@@ -97,6 +100,7 @@ class AdminController extends Controller
 
     public function updateAdminDetails(Request $request)
     {
+        Session::put('page', 'update_admin_details');
         if ($request->isMethod('post')) {
             $data = $request->all();
 
@@ -150,6 +154,7 @@ class AdminController extends Controller
     public function updateVendorDetails(Request $request, $slug)
     {
         if ($slug == "personal") {
+            Session::put('page', 'update_personal_details');
             if ($request->isMethod('post')) {
                 $data = $request->all();
 
@@ -201,6 +206,7 @@ class AdminController extends Controller
             }
             $vendorDetails = Vendor::where('id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
         } else if ($slug == "business") {
+            Session::put('page', 'update_business_details');
             if ($request->isMethod('post')) {
                 $data = $request->all();
 
@@ -257,6 +263,7 @@ class AdminController extends Controller
             }
             $vendorDetails = VendorsBusinessDetail::where('vendor_id', Auth::guard('admin')->user()->vendor_id)->first()->toArray();
         } else if ($slug == "bank") {
+            Session::put('page', 'update_bank_details');
             if ($request->isMethod('post')) {
                 $data = $request->all();
                 $rules = [
