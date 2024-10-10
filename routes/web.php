@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,5 +54,9 @@ Route::prefix('/admin')->group(function () {
         Route::post('update-admin-status', [AdminController::class, 'updateAdminStatus']);
         // Check Admin Password
         Route::post('check-admin-password', [AdminController::class , 'checkCurrentPassword']);
+
+        // Section
+        Route::get('sections',[SectionController::class, 'sections']);
+        Route::post('update-section-status',[SectionController::class, 'updateSectionStatus']);
     });
 });
