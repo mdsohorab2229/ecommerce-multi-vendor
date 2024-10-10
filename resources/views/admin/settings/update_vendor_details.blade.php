@@ -81,7 +81,12 @@
                          </div>
                          <div class="form-group">
                             <label for="vendor_country">Country</label>
-                            <input type="text" class="form-control" name="vendor_country" id="vendor_country" value="{{ $vendorDetails['country'] }}" required="" placeholder="Enter Country">
+                            <select class="form-control" name="vendor_country" id="vendor_country">
+                              <option value="">Select Country</option>
+                              @foreach ($countries as $country)
+                                 <option value="{{ $country['nicename'] }}" @if($country['nicename']==$vendorDetails['country']) selected @endif>{{ $country['nicename'] }}</option>
+                              @endforeach
+                            </select>
                          </div>
                          <div class="form-group">
                             <label for="vendor_pincode">Pincode</label>
@@ -161,7 +166,12 @@
                          </div>
                          <div class="form-group">
                             <label for="shop_country">Shop Country</label>
-                            <input type="text" class="form-control" name="shop_country" id="shop_country" value="{{ $vendorDetails['shop_country'] }}" required="" placeholder="Enter Shop Country">
+                            <select class="form-control" name="shop_country" id="shop_country">
+                              <option value="">Select Country</option>
+                              @foreach ($countries as $country)
+                                 <option value="{{ $country['nicename'] }}" @if($country['nicename']==$vendorDetails['shop_country']) selected @endif>{{ $country['nicename'] }}</option>
+                              @endforeach
+                            </select>
                          </div>
                          <div class="form-group">
                             <label for="shop_pincode">Shop Pincode</label>
