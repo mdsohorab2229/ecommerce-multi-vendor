@@ -1,6 +1,7 @@
 $(document).ready(function () {
     // call datatable class
-    $('#sections').DataTable();
+    $("#sections").DataTable();
+    $("#categories").DataTable();
     // end datatable class
 
     $(".nav-link").removeClass("active");
@@ -95,6 +96,37 @@ $(document).ready(function () {
         });
     });
 
+    //update Category status
+    $(document).on("click", ".updateCategoryStatus", function () {
+        var status = $(this).children("i").attr("status");
+        var category_id = $(this).attr("category_id");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            type: "POST",
+            url: "/admin/update-category-status",
+            data: {
+                status: status,
+                category_id: category_id,
+            },
+            success: function (resp) {
+                if (resp["status"] == 0) {
+                    $("#category-" + category_id).html(
+                        "<i style='font-size: x-large' class='mdi mdi-bookmark-outline' status='Inactive'></i>"
+                    );
+                } else if (resp["status"] == 1) {
+                    $("#category-" + category_id).html(
+                        "<i style='font-size: x-large' class='mdi mdi-bookmark-check' status='Active'></i>"
+                    );
+                }
+            },
+            error: function () {
+                alert("Error");
+            },
+        });
+    });
+
     // confirm deletion (sweetalert library)
     $(".confirmDelete").click(function () {
         var module = $(this).attr("module");
@@ -118,5 +150,4 @@ $(document).ready(function () {
             }
         });
     });
-
 });
