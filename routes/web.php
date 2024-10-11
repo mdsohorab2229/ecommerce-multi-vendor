@@ -45,19 +45,21 @@ Route::prefix('/admin')->group(function () {
         Route::match(['get', 'post'], 'update-admin-password', [AdminController::class, 'updateAdminPassword'])->name('update.admin.password');
         Route::match(['get', 'post'], 'update-admin-details', [AdminController::class, 'updateAdminDetails'])->name('update.admin.details');
         // Update vendor details
-        Route::match(['get','post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
+        Route::match(['get', 'post'], 'update-vendor-details/{slug}', [AdminController::class, 'updateVendorDetails']);
         //Views Admin / Subadmin / Vendors 
-        Route::get('admins/{type?}', [AdminController::class , 'admins']);
+        Route::get('admins/{type?}', [AdminController::class, 'admins']);
         //View vendor details
         Route::get('view-vendor-details/{id}', [AdminController::class, 'viewVendorDeatils']);
         //update admin status
         Route::post('update-admin-status', [AdminController::class, 'updateAdminStatus']);
         // Check Admin Password
-        Route::post('check-admin-password', [AdminController::class , 'checkCurrentPassword']);
+        Route::post('check-admin-password', [AdminController::class, 'checkCurrentPassword']);
 
         // Section
-        Route::get('sections',[SectionController::class, 'sections']);
-        Route::post('update-section-status',[SectionController::class, 'updateSectionStatus']);
-        Route::get('delete-section/{id}',[SectionController::class, 'deleteSection']);
+        Route::get('sections', [SectionController::class, 'sections']);
+        Route::post('update-section-status', [SectionController::class, 'updateSectionStatus']);
+        Route::get('delete-section/{id}', [SectionController::class, 'deleteSection']);
+        Route::match(['get', 'post'], 'add-edit-section/{id?}', [SectionController::class, 'addEditSection']);
+        
     });
 });

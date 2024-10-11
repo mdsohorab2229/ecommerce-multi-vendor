@@ -8,6 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Sections</h4>
+                        <a style="max-width: 150px; float:right; dispaly:inline-block;" class="btn btn-block btn-primary" href="{{ url('admin/add-edit-section') }}">Add Section</a>
                         @if (Session::has('success_message'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Success: </strong> {{ Session::get('success_message')}}
@@ -53,7 +54,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/edit-section/'.$section['id']) }}">
+                                            <a href="{{ url('admin/add-edit-section/'.$section['id']) }}">
                                                 <i style="font-size: x-large" class="mdi mdi-table-edit"></i></a> 
 
                                             {{-- <a title="section" class="confirmDelete" href="{{ url('admin/delete-section/'.$section['id']) }}">
