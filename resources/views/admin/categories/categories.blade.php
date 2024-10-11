@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Categories</h4>
-                        <a style="max-width: 150px; float:right; dispaly:inline-block;" class="btn btn-block btn-primary" href="{{ url('admin/add-edit-section') }}">Add Category</a>
+                        <a style="max-width: 150px; float:right; dispaly:inline-block;" class="btn btn-block btn-primary" href="{{ url('admin/add-edit-category') }}">Add Category</a>
                         @if (Session::has('success_message'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <strong>Success: </strong> {{ Session::get('success_message')}}
@@ -78,12 +78,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/add-edit-section/'.$category['id']) }}">
+                                            <a href="{{ url('admin/add-edit-category/'.$category['id']) }}">
                                                 <i style="font-size: x-large" class="mdi mdi-table-edit"></i></a> 
-
-                                            {{-- <a title="section" class="confirmDelete" href="{{ url('admin/delete-section/'.$section['id']) }}">
-                                                <i style="font-size: x-large" class="mdi mdi-delete"></i></a> --}}
-                                            <a href="javascript:void(0)" class="confirmDelete" module="section" moduleid={{ $category['id'] }}>
+                                            <a href="javascript:void(0)" class="confirmDelete" module="category" moduleid={{ $category['id'] }}>
                                                 <i style="font-size: x-large" class="mdi mdi-delete"></i></a>
                                         </td>
                                     </tr>

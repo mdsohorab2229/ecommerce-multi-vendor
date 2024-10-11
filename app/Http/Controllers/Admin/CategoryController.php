@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class CategoryController extends Controller
 {
@@ -29,5 +32,51 @@ class CategoryController extends Controller
             Category::where('id', $data['category_id'])->update(['status' => $status]);
             return response()->json(['status' => $status, 'category_id' => $data['category_id']]);
         }
+    }
+    public function addEditCategory(Request $request, $id = null)
+    {
+        Session::put('page', 'categories');
+        if ($id == "") {
+            $title = "Add Category";
+            $category = new Category();
+            $message = "Category added successfully!";
+        } else {
+            $title = "Update Category";
+            $category = Category::find($id);
+            $message = "Category update successfully!";
+        }
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            // dd($data);
+            //upload category image 
+            if ($request->hasFile('category_image')) {
+                // create image manager with desired driver
+                $manager = new ImageManager(new Driver());
+                $image_tmp = $request->file('category_image');
+                $imageName = hexdec(uniqid()) . '.' . $image_tmp->getClientOriginalExtension();
+                $img = $manager->read($image_tmp);
+                $img = $img->resize(300, 300)->save('front/images/category_images/' . $imageName);
+                $save_url = $imageName;
+                $category->category_image = $save_url;
+            } else {
+                $category->category_image = "";
+            }
+            $category->section_id = $data['section_id'];
+            $category->parent_id = $data['parent_id'];
+            $category->category_name = $data['category_name'];
+            $category->category_discount = $data['category_discount'];
+            $category->description = $data['description'];
+            $category->url = $data['url'];
+            $category->meta_title = $data['meta_title'];
+            $category->meta_description = $data['meta_description'];
+            $category->meta_keywords = $data['meta_keywords'];
+            $category->status = 1;
+            $category->save();
+
+            return redirect('admin/categories')->with('success_message', $message);
+        }
+
+        $getSections = Section::get()->toArray();
+        return view('admin.categories.add_edit_category')->with(compact('title', 'category', 'getSections'));
     }
 }

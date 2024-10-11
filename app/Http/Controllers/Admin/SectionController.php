@@ -46,9 +46,9 @@ class SectionController extends Controller
             $section = new Section();
             $message = "Section added successfully!";
         } else {
-            $title = "Edit Section";
+            $title = "Update Section";
             $section = Section::find($id);
-            $message = "Section added successfully!";
+            $message = "Section update successfully!";
         }
         if ($request->isMethod('post')) {
             $data = $request->all();
