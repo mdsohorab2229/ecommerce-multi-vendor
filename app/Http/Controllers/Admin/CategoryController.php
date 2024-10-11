@@ -39,16 +39,21 @@ class CategoryController extends Controller
         if ($id == "") {
             $title = "Add Category";
             $category = new Category();
+            $getCategories = array();
             $message = "Category added successfully!";
         } else {
             $title = "Update Category";
             $category = Category::find($id);
+            $getCategories = Category::with('subcategories')->where(['parent_id'=>0,'section_id'=>$category['section_id']])->get();
             $message = "Category update successfully!";
         }
         if ($request->isMethod('post')) {
             $data = $request->all();
-            // dd($data);
             //upload category image 
+            if ($data['category_discount'] == "") {
+                $data['category_discount'] = 0;
+            }
+
             if ($request->hasFile('category_image')) {
                 // create image manager with desired driver
                 $manager = new ImageManager(new Driver());
@@ -77,6 +82,17 @@ class CategoryController extends Controller
         }
 
         $getSections = Section::get()->toArray();
-        return view('admin.categories.add_edit_category')->with(compact('title', 'category', 'getSections'));
+        return view('admin.categories.add_edit_category')->with(compact('title', 'category', 'getSections', 'getCategories'));
+    }
+
+    public function appendCategoriesLevel(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+            $getCategories = Category::with('subcategories')
+            ->where(['parent_id' => 0, 'section_id' => $data['section_id']])->get()->toArray();
+
+            return view('admin.categories.append_categories_level')->with(compact('getCategories'));
+        }
     }
 }

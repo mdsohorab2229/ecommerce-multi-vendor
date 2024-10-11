@@ -68,15 +68,12 @@
                             <select name="section_id" id="section_id" class="form-control">
                                 <option value="">Select</option>
                                 @foreach ($getSections as $section)
-                                    <option value="{{ $section['id']}}">{{ $section['name'] }}</option>
+                                    <option value="{{ $section['id'] }}" @if(!empty($category['section_id']) && isset($category['section_id']) == $section['id']) selected="" @endif>{{ $section['name'] }}</option>
                                 @endforeach
                             </select>
                          </div>
-                         <div class="form-group">
-                            <label for="parent_id">Select Category Level</label>
-                            <select name="parent_id" id="parent_id" class="form-control">
-                                <option value="0">Main Category</option>
-                            </select>
+                         <div id="appendCategoriesLevel">
+                            @include('admin.categories.append_categories_level')
                          </div>
                          <div class="form-group">
                             <label for="category_discount">Category Discount</label>
@@ -85,7 +82,7 @@
                          </div>
                          <div class="form-group">
                             <label for="category_description">Category Description</label>
-                            <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                            <textarea name="description" id="description" class="form-control" cols="30" rows="10" >{{ $category['description'] ?? ''}}</textarea>
                          </div>
                          <div class="form-group">
                             <label for="category_url">Category URL</label>
