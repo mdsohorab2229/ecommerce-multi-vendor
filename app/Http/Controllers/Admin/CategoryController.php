@@ -44,16 +44,37 @@ class CategoryController extends Controller
         } else {
             $title = "Update Category";
             $category = Category::find($id);
-            $getCategories = Category::with('subcategories')->where(['parent_id'=>0,'section_id'=>$category['section_id']])->get();
+            $getCategories = Category::with('subcategories')->where(['parent_id' => 0, 'section_id' => $category['section_id']])->get();
             $message = "Category update successfully!";
         }
         if ($request->isMethod('post')) {
             $data = $request->all();
-            //upload category image 
+
+            // validation
+            $rules = [
+                'category_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'section_id' => 'required|numeric',
+                'url' => 'required',
+                'category_discount' => 'numeric'
+            ];
+
+            $customMessages = [
+                'category_name.required' => 'Category Name is Required',
+                'category_name.regex' => 'Valid Category Name is Required',
+                'section_id.required' => 'Section is Required',
+                'url.required' => 'URL is Required',
+                'category_discount.numeric' => 'Category discount Must be numeric value!.',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
             if ($data['category_discount'] == "") {
                 $data['category_discount'] = 0;
             }
-
+            if ($data['description'] == "") {
+                $data['description'] = "";
+            }
+            //upload category image 
             if ($request->hasFile('category_image')) {
                 // create image manager with desired driver
                 $manager = new ImageManager(new Driver());
