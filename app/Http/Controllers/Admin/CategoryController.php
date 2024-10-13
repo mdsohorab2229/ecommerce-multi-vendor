@@ -123,4 +123,21 @@ class CategoryController extends Controller
         $message = "Category has been deleted successfully";
         return redirect()->back()->with('success_message', $message);
     }
+
+    public function deleteCategoryImage($id)
+    {
+        $categoryImage = Category::select('category_image')->where('id', $id)->first();
+        $category_image_path = 'front/images/category_images/';
+
+        //Delete category image from category image folder if exists
+        if (file_exists($category_image_path . $categoryImage->category_image)) {
+            unlink($category_image_path . $categoryImage->category_image);
+        }
+
+        //Delete category image from category folder
+        Category::where('id', $id)->update(['category_image' => '']);
+
+        $message = "Category image has been deleted successfully";
+        return redirect()->back()->with('success_message', $message);
+    }
 }
