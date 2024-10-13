@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\ProfileController;
@@ -61,6 +62,12 @@ Route::prefix('/admin')->group(function () {
         Route::post('update-section-status', [SectionController::class, 'updateSectionStatus']);
         Route::get('delete-section/{id}', [SectionController::class, 'deleteSection']);
         Route::match(['get', 'post'], 'add-edit-section/{id?}', [SectionController::class, 'addEditSection']);
+        
+        // Brands
+        Route::get('brands', [BrandController::class, 'brands']);
+        Route::post('update-brand-status', [BrandController::class, 'updateBrandStatus']);
+        Route::get('delete-brand/{id}', [BrandController::class, 'deleteBrand']);
+        Route::match(['get', 'post'], 'add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
 
         //Categories
         Route::get('categories', [CategoryController::class, 'categories']);

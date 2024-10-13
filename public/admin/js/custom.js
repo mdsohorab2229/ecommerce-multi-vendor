@@ -2,6 +2,7 @@ $(document).ready(function () {
     // call datatable class
     $("#sections").DataTable();
     $("#categories").DataTable();
+    $("#brands").DataTable();
     // end datatable class
 
     $(".nav-link").removeClass("active");
@@ -65,68 +66,6 @@ $(document).ready(function () {
         });
     });
 
-    //update Section status
-    $(document).on("click", ".updateSectionStatus", function () {
-        var status = $(this).children("i").attr("status");
-        var section_id = $(this).attr("section_id");
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            type: "POST",
-            url: "/admin/update-section-status",
-            data: {
-                status: status,
-                section_id: section_id,
-            },
-            success: function (resp) {
-                if (resp["status"] == 0) {
-                    $("#section-" + section_id).html(
-                        "<i style='font-size: x-large' class='mdi mdi-bookmark-outline' status='Inactive'></i>"
-                    );
-                } else if (resp["status"] == 1) {
-                    $("#section-" + section_id).html(
-                        "<i style='font-size: x-large' class='mdi mdi-bookmark-check' status='Active'></i>"
-                    );
-                }
-            },
-            error: function () {
-                alert("Error");
-            },
-        });
-    });
-
-    //update Category status
-    $(document).on("click", ".updateCategoryStatus", function () {
-        var status = $(this).children("i").attr("status");
-        var category_id = $(this).attr("category_id");
-        $.ajax({
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            type: "POST",
-            url: "/admin/update-category-status",
-            data: {
-                status: status,
-                category_id: category_id,
-            },
-            success: function (resp) {
-                if (resp["status"] == 0) {
-                    $("#category-" + category_id).html(
-                        "<i style='font-size: x-large' class='mdi mdi-bookmark-outline' status='Inactive'></i>"
-                    );
-                } else if (resp["status"] == 1) {
-                    $("#category-" + category_id).html(
-                        "<i style='font-size: x-large' class='mdi mdi-bookmark-check' status='Active'></i>"
-                    );
-                }
-            },
-            error: function () {
-                alert("Error");
-            },
-        });
-    });
-
     // confirm deletion (sweetalert library)
     $(".confirmDelete").click(function () {
         var module = $(this).attr("module");
@@ -170,5 +109,54 @@ $(document).ready(function () {
             }
         });
     });
+
+    //update Brands active/inactive status
+    $(document).on("click", ".updateBrandStatus", function () {
+        var brand_id = $(this).attr("brand_id");
+        updateStatus("/admin/update-brand-status", "brand", "brand_id", brand_id, this);
+    });
+
+    //update section active/inactive status
+    $(document).on("click", ".updateSectionStatus", function () {
+        var section_id = $(this).attr("section_id");
+        updateStatus("/admin/update-section-status", "section", "section_id", section_id, this);
+    });
+
+    //update categories active/inactive status
+    $(document).on("click", ".updateCategoryStatus", function () {
+        var category_id = $(this).attr("category_id");
+        updateStatus("/admin/update-category-status", "category", "category_id", category_id, this);
+    });
+
+    // Reusable function to update active/inactive status
+    function updateStatus(updateUrl,idType, dataKey, dataValue, element) {
+        var status = $(element).children("i").attr("status");
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            type: "POST",
+            url: updateUrl,
+            data: {
+                status: status,
+                [dataKey]: dataValue, // Dynamic ID key (admin_id, section_id, etc.)
+            },
+            success: function (resp) {
+                if (resp["status"] == 0) {
+                    $("#" + idType + "-" + dataValue).html(
+                        "<i style='font-size: x-large' class='mdi mdi-bookmark-outline' status='Inactive'></i>"
+                    );
+                } else if (resp["status"] == 1) {
+                    $("#" + idType + "-" + dataValue).html(
+                        "<i style='font-size: x-large' class='mdi mdi-bookmark-check' status='Active'></i>"
+                    );
+                }
+            },
+            error: function () {
+                alert("Error updating status");
+            },
+        });
+    }
 
 });
