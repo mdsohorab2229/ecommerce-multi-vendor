@@ -116,4 +116,11 @@ class CategoryController extends Controller
             return view('admin.categories.append_categories_level')->with(compact('getCategories'));
         }
     }
+    
+    public function deleteCategory($id)
+    {
+        Category::where('id', $id)->delete();
+        $message = "Category has been deleted successfully";
+        return redirect()->back()->with('success_message', $message);
+    }
 }
