@@ -15,13 +15,35 @@ class AdminsTableSeeder extends Seeder
     {
         $adminRecords  = [
             [
+                'id' => 1,
+                'name' => 'Sohorab',
+                'type' => 'supperadmin',
+                'vendor_id' => 0,
+                'mobile' => '01791805951',
+                'email' => 'supperadmin@gmail.com',
+                'password' => '$2a$12$ZBLJp5svtlU0wVkGkcB0rObP7Uo624dDdfGvZmzsZ7IquokUCs9Mq',
+                'image' => '',
+                'status' => 0
+            ],
+            [
                 'id' => 2,
-                'name' => 'sohorab',
-                'type' => 'vendor',
-                'vendor_id' => 1,
+                'name' => 'Hossain',
+                'type' => 'admin',
+                'vendor_id' => 0,
                 'mobile' => '01791805952',
-                'email' => 'mdsohorab2229@gmail.com',
-                'password' => '$2a$12$Pgz.SXxoj73CO/SHSEz1j.QPEaSOGoKvGVWU5o302tSp34f3ByzRi',
+                'email' => 'admin@gmail.com',
+                'password' => '$2a$12$ZBLJp5svtlU0wVkGkcB0rObP7Uo624dDdfGvZmzsZ7IquokUCs9Mq',
+                'image' => '',
+                'status' => 0
+            ],
+            [
+                'id' => 3,
+                'name' => 'Sagor',
+                'type' => 'vendor',
+                'vendor_id' => 3,
+                'mobile' => '01791805953',
+                'email' => 'vendor@gmail.com',
+                'password' => '$2a$12$ZBLJp5svtlU0wVkGkcB0rObP7Uo624dDdfGvZmzsZ7IquokUCs9Mq',
                 'image' => '',
                 'status' => 0
             ]
