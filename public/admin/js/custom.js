@@ -3,6 +3,7 @@ $(document).ready(function () {
     $("#sections").DataTable();
     $("#categories").DataTable();
     $("#brands").DataTable();
+    $("#admins").DataTable();
     // end datatable class
 
     $(".nav-link").removeClass("active");
