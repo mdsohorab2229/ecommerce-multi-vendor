@@ -17,10 +17,10 @@ class AdminsTableSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Sohorab',
-                'type' => 'supperadmin',
+                'type' => 'superadmin',
                 'vendor_id' => 0,
                 'mobile' => '01791805951',
-                'email' => 'supperadmin@gmail.com',
+                'email' => 'superadmin@gmail.com',
                 'password' => '$2a$12$ZBLJp5svtlU0wVkGkcB0rObP7Uo624dDdfGvZmzsZ7IquokUCs9Mq',
                 'image' => '',
                 'status' => 0
