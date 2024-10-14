@@ -77,60 +77,60 @@
                       <h4 class="card-title">Business Information</h4>
                          <div class="form-group">
                             <label>Shop Name</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_name'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_name'] ?? ''}}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_address">Shop Address</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_address'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_address'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_city">Shop City</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_city'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_city'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_state">Shop State</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_state'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_state'] ?? ''}}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_country">Shop Country</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_country'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_country'] ?? ''}}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_pincode">Shop Pincode</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_pincode'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_pincode'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_mobile">Shop Mobile</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_mobile'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_mobile'] ??'' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_website">Shop Website</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_website'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_website'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_email">Shop Email</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_email'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_email'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_license_number">Shop License Number</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_license_number'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_license_number'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="gst_number">GST Number</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['gst_number'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['gst_number'] ?? '' }}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="pan_number">PAN Number</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['pan_number'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['pan_number'] ?? ''}}" readonly>
                          </div>
                          <div class="form-group">
                             <label for="shop_proof">Address Proof</label>
-                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_proof'] }}" readonly>
+                            <input type="text" class="form-control" value="{{ $vendorDetails['vendor_business']['shop_proof'] ?? ''}}" readonly>
                          </div>
-                         @if ($vendorDetails['vendor_business']['shop_proof_image'])
+                         @if ($vendorDetails['vendor_business']['shop_proof_image'] ?? '')
                          <div class="form-group">
                             <label for="vendor_image">Address Proof Image</label>
-                            <br><img src="{{ url('admin/images/proofs/'.$vendorDetails['vendor_business']['shop_proof_image']) }}" alt="" width="300" height="300">
+                            <br><img src="{{ url('admin/images/proofs/'.$vendorDetails['vendor_business']['shop_proof_image'] ?? '') }}" alt="" width="300" height="300">
                          </div>
                          @endif
                    </div>

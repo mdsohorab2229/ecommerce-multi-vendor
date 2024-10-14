@@ -12,7 +12,12 @@ class ProductsController extends Controller
     public function products()
     {
         Session::put('page', 'categories');
-        $products = Product::get()->toArray();
+        $products = Product::with(['section' => function ($query) {
+            $query->select('id', 'name');
+        }, 'category' => function ($query) {
+            $query->select('id', 'category_name');
+        }])->get()->toArray();
+
         return view('admin.products.products')->with(compact('products'));
     }
 

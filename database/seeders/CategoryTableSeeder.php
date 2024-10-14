@@ -15,6 +15,7 @@ class CategoryTableSeeder extends Seeder
     {
         $categoryRecords  = [
             [
+                'id' => 1,
                 'parent_id' => 0,
                 'section_id' => 1,
                 'category_name' => 'Electronics',
@@ -28,6 +29,7 @@ class CategoryTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
+                'id' => 2,
                 'parent_id' => 0,
                 'section_id' => 2,
                 'category_name' => 'Fashion',
@@ -41,6 +43,7 @@ class CategoryTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
+                'id' => 3,
                 'parent_id' => 0,
                 'section_id' => 3,
                 'category_name' => 'Appliances',
@@ -54,6 +57,7 @@ class CategoryTableSeeder extends Seeder
                 'status' => 1,
             ],
             [
+                'id' => 4,
                 'parent_id' => 0,
                 'section_id' => 4,
                 'category_name' => 'Books',
