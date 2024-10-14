@@ -18,7 +18,7 @@ class ProductsTableSeeder extends Seeder
                 'admin_id' => 1,
                 'vendor_id' => 1,
                 'admin_type' => "vendor",
-                'section_id' => 1,
+                'section_id' => 2,
                 'category_id' => 1,
                 'brand_id' => 1,
                 'product_name' => 'Sample Product 1',

@@ -4,6 +4,7 @@ $(document).ready(function () {
     $("#categories").DataTable();
     $("#brands").DataTable();
     $("#admins").DataTable();
+    $("#products").DataTable();
     // end datatable class
 
     $(".nav-link").removeClass("active");
@@ -127,6 +128,12 @@ $(document).ready(function () {
     $(document).on("click", ".updateCategoryStatus", function () {
         var category_id = $(this).attr("category_id");
         updateStatus("/admin/update-category-status", "category", "category_id", category_id, this);
+    });
+
+    //update products active/inactive status
+    $(document).on("click", ".updateProductStatus", function () {
+        var product_id = $(this).attr("product_id");
+        updateStatus("/admin/update-product-status", "product", "product_id", product_id, this);
     });
 
     // Reusable function to update active/inactive status
