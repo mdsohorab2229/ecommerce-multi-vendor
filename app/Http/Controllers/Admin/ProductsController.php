@@ -101,6 +101,17 @@ class ProductsController extends Controller
                     $product->product_image =  $imageName;
                 }
             }
+            // upload video 
+            if ($request->hasFile('product_video')) {
+                $video_tmp = $request->file('product_video');
+                if ($video_tmp->isValid()) {
+                    $extension = $video_tmp->getClientOriginalExtension();
+                    $videoName = rand(111, 99999) . '.' . $extension;
+                    $videoPath = 'front/videos/product_videos/';
+                    $video_tmp->move($videoPath . $videoName);
+                    $product->product_video = $videoName;
+                }
+            }
 
             //save Product details in product table
             $categoryDetails = Category::find($data['category_id']);
