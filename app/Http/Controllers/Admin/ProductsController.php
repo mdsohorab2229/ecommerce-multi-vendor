@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use Auth;
 
 class ProductsController extends Controller
@@ -84,8 +86,23 @@ class ProductsController extends Controller
             ];
 
             $this->validate($request, $rules, $customMessages);
-            //save Product details in product table
+            //Upload product image after resize small:250×250 medium: 500×500 large: 1000×1000
+            if ($request->hasFile('product_image')) {
+                $image_tmp = $request->file('product_image');
+                if ($image_tmp->isValid()) {
+                    $manager = new ImageManager(new Driver());
+                    $imageName = hexdec(uniqid()) . '.' . $image_tmp->getClientOriginalExtension();
+                    $img = $manager->read($image_tmp);
+                    $largeImagePath = $img->resize(1000, 1000)->save('front/images/product_images/large/' . $imageName);
+                    $mediumImagePath = $img->resize(500, 500)->save('front/images/product_images/medium/' . $imageName);
+                    $smallImagePath = $img->resize(250, 250)->save('front/images/product_images/small/' . $imageName);
 
+                    //Insert Image Name in products table
+                    $product->product_image =  $imageName;
+                }
+            }
+
+            //save Product details in product table
             $categoryDetails = Category::find($data['category_id']);
             $product->section_id = $categoryDetails['section_id'];
             $product->category_id = $data['category_id'];

@@ -137,7 +137,7 @@
                             @if(!empty($product['is_featured']) && $product['is_featured'] =="Yes") checked="" @endif>
                          </div>
                          <div class="form-group">
-                            <label for="product_image">Product Image</label>
+                            <label for="product_image">Product Image (Recommend Size: 1000*1000)</label>
                             <input type="file" class="form-control" name="product_image" id="product_image">
                             @if (!empty($product['product_image']))
                                 <a target="_blank" href="{{ url('front/images/product_images/'.$product['product_image']) }}">View Image</a>&nbsp;|&nbsp;
@@ -145,7 +145,7 @@
                             @endif
                          </div>
                          <div class="form-group">
-                            <label for="product_video">Product Video</label>
+                            <label for="product_video">Product Video (Recommend Size: Less then 2MB)</label>
                             <input type="file" class="form-control" name="product_video" id="product_video">
                             @if (!empty($product['product_video']))
                                 <a target="_blank" href="{{ url('front/videos/product_videos/'.$product['product_video']) }}">View Video</a>&nbsp;|&nbsp;
