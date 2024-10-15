@@ -65,9 +65,9 @@
                                 @foreach ($categories as $section)
                                     <optgroup label="{{ $section['name'] }}"> </optgroup>
                                     @foreach ($section['categories'] as $category)
-                                        <option value="{{ $category['category_name'] }}">&nbsp;&nbsp;&nbsp;=={{ $category['category_name'] }}</option>
+                                        <option value="{{ $category['id'] }}">&nbsp;&nbsp;&nbsp;=={{ $category['category_name'] }}</option>
                                         @foreach ($category['subcategories'] as $subcategory)
-                                            <option value="{{ $subcategory['category_name'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--{{ $subcategory['category_name'] }}</option>
+                                            <option value="{{ $subcategory['id'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--{{ $subcategory['category_name'] }}</option>
                                         @endforeach
                                     @endforeach
                                 @endforeach
@@ -119,17 +119,17 @@
                          <div class="form-group">
                             <label for="meta_title">Meta Title</label>
                             <input type="text" class="form-control" name="meta_title" id="meta_title"
-                             required="" placeholder="Enter Meta Title" @if(!empty($product['meta_title'])) value="{{ $product['meta_title'] }}" @else value="{{ old('meta_title') }}" @endif>
+                            placeholder="Enter Meta Title" @if(!empty($product['meta_title'])) value="{{ $product['meta_title'] }}" @else value="{{ old('meta_title') }}" @endif>
                          </div>
                          <div class="form-group">
                             <label for="meta_description">Meta Description</label>
                             <input type="text" class="form-control" name="meta_description" id="meta_description"
-                             required="" placeholder="Enter Meta Description" @if(!empty($product['meta_description'])) value="{{ $product['meta_description'] }}" @else value="{{ old('meta_description') }}" @endif>
+                            placeholder="Enter Meta Description" @if(!empty($product['meta_description'])) value="{{ $product['meta_description'] }}" @else value="{{ old('meta_description') }}" @endif>
                          </div>
                          <div class="form-group">
                             <label for="meta_keywords">Meta Keywords</label>
                             <input type="text" class="form-control" name="meta_keywords" id="meta_keywords"
-                             required="" placeholder="Enter Meta Keywords" @if(!empty($product['meta_keywords'])) value="{{ $product['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif>
+                            placeholder="Enter Meta Keywords" @if(!empty($product['meta_keywords'])) value="{{ $product['meta_keywords'] }}" @else value="{{ old('meta_keywords') }}" @endif>
                          </div>
                          <div class="form-group">
                             <label for="is_featured">Featured Item</label>
