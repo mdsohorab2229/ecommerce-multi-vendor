@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('admin_id');
             $table->integer('vendor_id');
-            $table->string('admin_type');
             $table->integer('section_id');
             $table->integer('category_id');
             $table->integer('brand_id');
+            $table->string('admin_type');
             $table->string('product_name');
             $table->string('product_code');
             $table->string('product_color'); 
