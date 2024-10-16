@@ -135,7 +135,11 @@ $(document).ready(function () {
         var product_id = $(this).attr("product_id");
         updateStatus("/admin/update-product-status", "product", "product_id", product_id, this);
     });
-
+    //update products attributes active/inactive status
+    $(document).on("click", ".updateAttributeStatus", function () {
+        var attribute_id = $(this).attr("attribute_id");
+        updateStatus("/admin/update-attribute-status", "attribute", "attribute_id", attribute_id, this);
+    });
     // Reusable function to update active/inactive status
     function updateStatus(updateUrl,idType, dataKey, dataValue, element) {
         var status = $(element).children("i").attr("status");

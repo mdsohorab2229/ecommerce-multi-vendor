@@ -88,5 +88,7 @@ Route::prefix('/admin')->group(function () {
         
         //Attributes
         Route::match(['get', 'post'], 'add-edit-attributes/{id}', [ProductsController::class, 'addEditAttributes']);
+        Route::post('update-attribute-status', [ProductsController::class, 'updateAttributeStatus']);
+        Route::match(['get', 'post'], 'edit-attributes/{id}', [ProductsController::class, 'editAttributes']);
     });
 });

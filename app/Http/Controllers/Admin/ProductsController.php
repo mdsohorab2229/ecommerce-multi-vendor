@@ -243,4 +243,42 @@ class ProductsController extends Controller
 
         return view('admin/attributes/add_edit_attributes')->with(compact('product'));
     }
+
+    // update Product status
+    public function updateAttributeStatus(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+            if ($data['status'] == "Active") {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+            ProductsAttribute::where('id', $data['attribute_id'])->update(['status' => $status]);
+            return response()->json(['status' => $status, 'attribute_id' => $data['attribute_id']]);
+        }
+    }
+
+    public function editAttributes(Request $request, $id)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+
+            if (isset($data['attributeId']) && is_array($data['attributeId'])) {
+                foreach ($data['attributeId'] as $key => $attributeId) {
+                    // Ensure that the attribute, price, and stock are set before accessing them
+                    if (!empty($attributeId) && isset($data['price'][$key], $data['stock'][$key])) {
+                        ProductsAttribute::where(['id' => $attributeId])
+                            ->update([
+                                'price' => $data['price'][$key],
+                                'stock' => $data['stock'][$key]
+                            ]);
+                    }
+                }
+            }
+
+            return redirect()->back()->with('success_message', 'Product Attributes have been updated successfully!');
+        }
+    }
+
 }
