@@ -100,7 +100,7 @@
                                         <td>
                                             <a href="{{ url('admin/add-edit-product/'.$product['id']) }}">
                                                 <i style="font-size: x-large" class="mdi mdi-table-edit"></i></a> 
-                                                <a href="{{ url('admin/add-attributes/'.$product['id']) }}">
+                                                <a href="{{ url('admin/add-edit-attributes/'.$product['id']) }}">
                                                     <i style="font-size: x-large" class="mdi mdi-plus-box"></i></a> 
                                             <a href="javascript:void(0)" class="confirmDelete" module="product" moduleid={{ $product['id'] }}>
                                                 <i style="font-size: x-large" class="mdi mdi-delete"></i></a>

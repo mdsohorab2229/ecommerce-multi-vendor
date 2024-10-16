@@ -223,7 +223,9 @@ class ProductsController extends Controller
                     }
 
                     // Size duplicate check
-                    $sizeCount = ProductsAttribute::where('product_id', $id, 'size', $data['size'][$key])->count();
+                    $sizeCount = ProductsAttribute::where('product_id', $id)
+                    ->where('size', $data['size'][$key])
+                    ->count();                
                     if ($sizeCount > 0) {
                         return redirect()->back()->with('error_message', 'Size already exists! Please add another Size!');
                     }
