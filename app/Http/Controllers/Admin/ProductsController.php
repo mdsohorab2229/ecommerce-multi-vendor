@@ -67,7 +67,7 @@ class ProductsController extends Controller
             // validation
             $rules = [
                 'category_id' => 'required',
-                'product_name' => 'required|regex:/^[\pL\s\-]+$/u',
+                'product_name' => 'required', 
                 'product_code' => 'required|regex:/^\w+$/',
                 'product_color' => 'required|regex:/^[\pL\s\-]+$/u',
                 'product_price' => 'required|numeric'
@@ -76,7 +76,6 @@ class ProductsController extends Controller
             $customMessages = [
                 'category_id.required' => 'Category is Required',
                 'product_name.required' => 'Product Name is Required',
-                'product_name.regex' => 'Valid Product Name is Required',
                 'product_code.required' => 'Product Code is Required',
                 'product_code.regex' => 'Valid Product Code is Required',
                 'product_color.required' => 'Product Color is Required',
@@ -159,6 +158,50 @@ class ProductsController extends Controller
         //get all brands
         $brands = Brand::where('status', 1)->get()->toArray();
 
-        return view('admin.products.add_edit_product')->with(compact('title', 'categories', 'brands'));
+        return view('admin.products.add_edit_product')->with(compact('title', 'categories', 'brands', 'product'));
+    }
+
+    public function deleteProductImage($id)
+    {
+        $productImage = Product::select('product_image')->where('id', $id)->first();
+
+        $small_image_path = 'front/images/product_images/small/';
+        $medium_image_path = 'front/images/product_images/medium/';
+        $large_image_path = 'front/images/product_images/large/';
+
+        //Delete product small image from product small image folder if exists
+        if (file_exists($small_image_path . $productImage->product_image)) {
+            unlink($small_image_path . $productImage->product_image);
+        }
+        //Delete product medium image from product medium image folder if exists
+        if (file_exists($medium_image_path . $productImage->product_image)) {
+            unlink($medium_image_path . $productImage->product_image);
+        }
+        //Delete product large image from product large image folder if exists
+        if (file_exists($large_image_path . $productImage->product_image)) {
+            unlink($large_image_path . $productImage->product_image);
+        }
+
+        //Delete product image from product folder
+        Product::where('id', $id)->update(['product_image' => '']);
+
+        $message = "Product image has been deleted successfully";
+        return redirect()->back()->with('success_message', $message);
+    }
+
+    public function deleteProductVideo($id)
+    {
+        $productVideo = Product::select('product_video')->where('id', $id)->first();
+        $product_video_path = 'front/videos/product_videos/';
+        //Delete product videos from product videos folder if exists
+        if (file_exists($product_video_path . $productVideo)) {
+            unlink($product_video_path . $productVideo);
+        }
+
+        //Delete product videos from product folder
+        Product::where('id', $id)->update(['product_video' => '']);
+
+        $message = "Product videos has been deleted successfully";
+        return redirect()->back()->with('success_message', $message);
     }
 }
