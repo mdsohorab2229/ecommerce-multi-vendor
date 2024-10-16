@@ -17,7 +17,7 @@ class ProductsController extends Controller
 {
     public function products()
     {
-        Session::put('page', 'categories');
+        Session::put('page', 'products');
         $products = Product::with(['section' => function ($query) {
             $query->select('id', 'name');
         }, 'category' => function ($query) {
@@ -108,7 +108,7 @@ class ProductsController extends Controller
                     $extension = $video_tmp->getClientOriginalExtension();
                     $videoName = rand(111, 99999) . '.' . $extension;
                     $videoPath = 'front/videos/product_videos/';
-                    $video_tmp->move($videoPath . $videoName);
+                    $video_tmp->move($videoPath , $videoName);
                     $product->product_video = $videoName;
                 }
             }
