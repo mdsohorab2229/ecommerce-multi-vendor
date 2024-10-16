@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductsAttribute;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -203,5 +204,43 @@ class ProductsController extends Controller
 
         $message = "Product videos has been deleted successfully";
         return redirect()->back()->with('success_message', $message);
+    }
+
+    //Add edit attributes
+    public function addEditAttributes(Request $request, $id)
+    {
+        $product = Product::select('id', 'product_name', 'product_code', 'product_color', 'product_image')->with('attributes')->find($id);
+
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            foreach ($data['sku'] as $key => $value) {
+                if (!empty($value)) {
+
+                    // SKU duplicate check
+                    $skuCount = ProductsAttribute::where('sku', $value)->count();
+                    if ($skuCount > 0) {
+                        return redirect()->back()->with('error_message', 'SKU already exists! Please add another SKU!');
+                    }
+
+                    // Size duplicate check
+                    $sizeCount = ProductsAttribute::where('product_id', $id, 'size', $data['size'][$key])->count();
+                    if ($sizeCount > 0) {
+                        return redirect()->back()->with('error_message', 'Size already exists! Please add another Size!');
+                    }
+
+                    $attribute = new ProductsAttribute();
+                    $attribute->product_id = $id;
+                    $attribute->sku = $value;
+                    $attribute->size = $data['size'][$key];
+                    $attribute->price = $data['price'][$key];
+                    $attribute->stock = $data['stock'][$key];
+                    $attribute->status = 1;
+                    $attribute->save();
+                }
+            }
+            return redirect()->back()->with('success_message', 'Product Attributes has been added successfully!');
+        }
+
+        return view('admin/attributes/add_edit_attributes')->with(compact('product'));
     }
 }
