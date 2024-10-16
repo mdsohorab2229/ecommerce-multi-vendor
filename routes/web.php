@@ -90,5 +90,10 @@ Route::prefix('/admin')->group(function () {
         Route::match(['get', 'post'], 'add-edit-attributes/{id}', [ProductsController::class, 'addEditAttributes']);
         Route::post('update-attribute-status', [ProductsController::class, 'updateAttributeStatus']);
         Route::match(['get', 'post'], 'edit-attributes/{id}', [ProductsController::class, 'editAttributes']);
+
+        //Add multiple images
+        Route::match(['get', 'post'], 'add-images/{id}', [ProductsController::class, 'addImages']);
+        Route::post('update-images-status', [ProductsController::class, 'updateImagesStatus']);
+        Route::get('delete-image/{id}', [ProductsController::class, 'deleteImage']);
     });
 });

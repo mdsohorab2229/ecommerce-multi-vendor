@@ -98,10 +98,12 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ url('admin/add-edit-product/'.$product['id']) }}">
+                                            <a title="Edit Product" href="{{ url('admin/add-edit-product/'.$product['id']) }}">
                                                 <i style="font-size: x-large" class="mdi mdi-table-edit"></i></a> 
-                                                <a href="{{ url('admin/add-edit-attributes/'.$product['id']) }}">
-                                                    <i style="font-size: x-large" class="mdi mdi-plus-box"></i></a> 
+                                            <a title="Add Attributes" href="{{ url('admin/add-edit-attributes/'.$product['id']) }}">
+                                                <i style="font-size: x-large" class="mdi mdi-plus-box"></i></a> 
+                                            <a title="Add Multiple Images" href="{{ url('admin/add-images/'.$product['id']) }}">
+                                                <i style="font-size: x-large" class="mdi mdi-library-plus"></i></a> 
                                             <a href="javascript:void(0)" class="confirmDelete" module="product" moduleid={{ $product['id'] }}>
                                                 <i style="font-size: x-large" class="mdi mdi-delete"></i></a>
                                         </td>

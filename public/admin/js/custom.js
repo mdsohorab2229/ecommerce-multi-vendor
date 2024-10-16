@@ -140,6 +140,11 @@ $(document).ready(function () {
         var attribute_id = $(this).attr("attribute_id");
         updateStatus("/admin/update-attribute-status", "attribute", "attribute_id", attribute_id, this);
     });
+    //update products Images table data  status active/inactive 
+    $(document).on("click", ".updateImagesStatus", function () {
+        var image_id = $(this).attr("image_id");
+        updateStatus("/admin/update-images-status", "image", "image_id", image_id, this);
+    });
     // Reusable function to update active/inactive status
     function updateStatus(updateUrl,idType, dataKey, dataValue, element) {
         var status = $(element).children("i").attr("status");
