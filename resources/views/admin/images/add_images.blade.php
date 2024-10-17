@@ -86,7 +86,7 @@
                             </div>
                          </div>
                          <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                         <button class="btn btn-light">Cancel</button>
+                         <button type="reset" class="btn btn-light">Cancel</button>
                       </form>
                       <br><br><h4 class="card-title">Product Images</h4>
                         <div class="table-responsive pt-3">

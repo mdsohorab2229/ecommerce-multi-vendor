@@ -92,7 +92,7 @@
                             </div>
                          </div>
                          <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                         <button class="btn btn-light">Cancel</button>
+                         <button type="reset" class="btn btn-light">Cancel</button>
                       </form>
                       <br><br><h4 class="card-title">Product Attributes</h4>
                       <form action="{{ url('admin/edit-attributes/'.$product['id']) }}" method="post">
