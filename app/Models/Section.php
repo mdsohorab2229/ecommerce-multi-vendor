@@ -9,6 +9,12 @@ class Section extends Model
 {
     use HasFactory;
 
+    public static function sections()
+    {
+        $getSections = Section::with('categories')->where('status', 1)->get()->toArray();
+        return $getSections;
+    }
+
     public function categories()
     {
         return $this->hasMany('App\Models\Category', 'section_id')
