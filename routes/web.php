@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -96,4 +97,9 @@ Route::prefix('/admin')->group(function () {
         Route::post('update-images-status', [ProductsController::class, 'updateImagesStatus']);
         Route::get('delete-image/{id}', [ProductsController::class, 'deleteImage']);
     });
+});
+
+Route::namespace('App\Http\Controllers\Front')->group(function () {
+
+    Route::get('/', [IndexController::class, 'index']);
 });
