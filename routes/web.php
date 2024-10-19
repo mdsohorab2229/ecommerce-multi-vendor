@@ -102,7 +102,8 @@ Route::prefix('/admin')->group(function () {
         Route::get('banners', [BannersController::class, 'banners']);
         Route::post('update-banner-status', [BannersController::class, 'updateBannerStatus']);
         Route::get('delete-banner/{id}', [BannersController::class, 'deleteBanner']);
-        
+        Route::match(['get', 'post'], 'add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
+
     });
 });
 
