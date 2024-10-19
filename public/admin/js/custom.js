@@ -5,6 +5,7 @@ $(document).ready(function () {
     $("#brands").DataTable();
     $("#admins").DataTable();
     $("#products").DataTable();
+    $("#banners").DataTable();
     // end datatable class
 
     $(".nav-link").removeClass("active");
@@ -144,6 +145,11 @@ $(document).ready(function () {
     $(document).on("click", ".updateImagesStatus", function () {
         var image_id = $(this).attr("image_id");
         updateStatus("/admin/update-images-status", "image", "image_id", image_id, this);
+    });
+    //update Banners table data  status active/inactive 
+    $(document).on("click", ".updateBannerStatus", function () {
+        var banner_id = $(this).attr("banner_id");
+        updateStatus("/admin/update-banner-status", "banner", "banner_id", banner_id, this);
     });
     // Reusable function to update active/inactive status
     function updateStatus(updateUrl,idType, dataKey, dataValue, element) {

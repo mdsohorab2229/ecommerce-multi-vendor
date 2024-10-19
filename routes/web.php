@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -96,6 +97,12 @@ Route::prefix('/admin')->group(function () {
         Route::match(['get', 'post'], 'add-images/{id}', [ProductsController::class, 'addImages']);
         Route::post('update-images-status', [ProductsController::class, 'updateImagesStatus']);
         Route::get('delete-image/{id}', [ProductsController::class, 'deleteImage']);
+
+        //Banners 
+        Route::get('banners', [BannersController::class, 'banners']);
+        Route::post('update-banner-status', [BannersController::class, 'updateBannerStatus']);
+        Route::get('delete-banner/{id}', [BannersController::class, 'deleteBanner']);
+        
     });
 });
 
