@@ -68,7 +68,16 @@ class BannersController extends Controller
             $banner->link = $data['link'];
             $banner->title = $data['title'];
             $banner->alt = $data['alt'];
+            $banner->type = $data['type'];
             $banner->status = 1;
+
+            if($data['type'] == "Slider"){
+                $width = "1920";
+                $height = "720";
+            }else if($data['type'] == "Fix"){
+                $width = "1920";
+                $height = "450";
+            }
             //Upload Banner image after resize 1920:720
             if ($request->hasFile('image')) {
                 $image_tmp = $request->file('image');
@@ -76,7 +85,7 @@ class BannersController extends Controller
                     $manager = new ImageManager(new Driver());
                     $imageName = hexdec(uniqid()) . '.' . $image_tmp->getClientOriginalExtension();
                     $img = $manager->read($image_tmp);
-                    $imagePath = $img->resize(1000, 1000)->save('front/images/banner_images/' . $imageName);
+                    $imagePath = $img->resize($width, $height)->save('front/images/banner_images/' . $imageName);
                     //Insert Image Name in Banner table
                     $banner->image =  $imageName;
                 }

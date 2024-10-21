@@ -7,7 +7,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Banners</h4>
+                        <h4 class="card-title">Home Page Banners</h4>
                         <a style="max-width: 150px; float:right; dispaly:inline-block;" class="btn btn-block btn-primary" href="{{ url('admin/add-edit-banner') }}">Add Banner</a>
                         @if (Session::has('success_message'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -26,6 +26,9 @@
                                         </th>
                                         <th>
                                             Image
+                                        </th>
+                                        <th>
+                                            Type
                                         </th>
                                         <th>
                                             Link
@@ -53,6 +56,9 @@
                                         <td>
                                             <img style="width: 100px; height: 75px;" src="{{ asset('front/images/banner_images/'.$banner['image']) }}">
                                             {{ $banner['image'] }}
+                                        </td>
+                                        <td>
+                                            {{ $banner['type'] }}
                                         </td>
                                         <td>
                                             {{ $banner['link'] }}
