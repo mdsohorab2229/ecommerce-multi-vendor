@@ -70,7 +70,7 @@ $(document).ready(function () {
     });
 
     // confirm deletion (sweetalert library)
-    $(".confirmDelete").click(function () {
+    $(document).on("click", ".confirmDelete", function () {
         var module = $(this).attr("module");
         var moduleid = $(this).attr("moduleid");
         Swal.fire({
