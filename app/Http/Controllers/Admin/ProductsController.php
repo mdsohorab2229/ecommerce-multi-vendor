@@ -136,7 +136,7 @@ class ProductsController extends Controller
             if(empty($data['product_discount'])){
                 $data['product_discount'] = 0;
             }
-            
+
             if(empty($data['product_weight'])){
                 $data['product_weight'] = 0;
             }
@@ -158,6 +158,12 @@ class ProductsController extends Controller
                 $product->is_featured = "No";
             }
 
+            if (!empty($data['is_bestseller'])) {
+                $product->is_bestseller = $data['is_bestseller'];
+            } else {
+                $product->is_bestseller = "No";
+            }
+            
             $product->status = 1;
             $product->save();
 

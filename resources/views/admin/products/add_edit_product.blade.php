@@ -137,6 +137,11 @@
                             @if(!empty($product['is_featured']) && $product['is_featured'] =="Yes") checked="" @endif>
                          </div>
                          <div class="form-group">
+                            <label for="is_bestseller">Best Seller Item</label>
+                            <input type="checkbox"  name="is_bestseller" id="is_bestseller" value="Yes"
+                            @if(!empty($product['is_bestseller']) && $product['is_bestseller'] =="Yes") checked="" @endif>
+                         </div>
+                         <div class="form-group">
                             <label for="product_image">Product Image (Recommend Size: 1000*1000)</label>
                             <input type="file" class="form-control" name="product_image" id="product_image">
                             @if (!empty($product['product_image']))
